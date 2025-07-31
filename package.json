@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@coreui/icons": "^3.0.1",
+    "@vitejs/plugin-react": "^4.7.0",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.7",
     "preact": "^10.26.9",
