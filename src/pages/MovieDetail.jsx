@@ -12,18 +12,17 @@ const MovieDetail = () => {
   const [currentEpisode, setCurrentEpisode] = useState(null)
   const [error, setError] = useState(null)
 
+  // Fetch movie
   useEffect(() => {
     const fetchMovie = async () => {
       try {
         setLoading(true)
         const data = await getMovieDetail(slug)
-        console.log('Dữ liệu API trả về:', data)
-        console.log('Servers (episodes):', data?.episodes)
         if (data && data.movie) {
           setMovie(data.movie)
           setEpisodes(data.episodes || [])
-          const firtServer = data.episodes?.[0]
-          const firstEp = firtServer?.server_data?.[0]
+          const firstServer = data.episodes?.[0]
+          const firstEp = firstServer?.server_data?.[0]
           if (firstEp) {
             const url =
               firstEp.link_embed ||
@@ -44,27 +43,34 @@ const MovieDetail = () => {
     fetchMovie()
   }, [slug])
 
+  // Disable scroll when showing trailer
+  useEffect(() => {
+    document.body.style.overflow = showTrailer ? 'hidden' : 'auto'
+    return () => (document.body.style.overflow = 'auto')
+  }, [showTrailer])
+
+  // Helper for trailer embed
+  const getEmbedTrailer = (url) => {
+    if (!url) return null
+    const isYoutube = url.includes('youtube.com') || url.includes('youtu.be')
+    return isYoutube ? url.replace('watch?v=', 'embed/') : url
+  }
+
+  // Render
   if (loading)
     return (
       <div style={{ color: '#fff', background: '#000', padding: '50px' }}>
         Đang tải...
       </div>
     )
+
   if (error)
     return (
       <div style={{ color: '#fff', background: '#000', padding: '50px' }}>
         Lỗi: {error}
       </div>
     )
-  useEffect(() => {
-    document.body.style.overflow = showTrailer ? 'hidden' : 'auto'
-    return () => (document.body.style.overflow = 'auto')
-  }, [showTrailer])
-  const getEmbedTrailer = (url) => {
-    if (!url) return null
-    const isYoutube = url.includes('youtube.com') || url.includes('youtu.be')
-    return isYoutube ? url.replace('watch?v=', 'embed/') : url
-  }
+
   if (!movie)
     return (
       <div

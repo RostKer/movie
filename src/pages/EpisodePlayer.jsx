@@ -12,11 +12,13 @@ const EpisodePlayer = () => {
   const [selectedServerIndex, setSelectedServerIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const [isFading, setIsFading] = useState(false)
+
   // Reset server về 0 khi đổi phim
   useEffect(() => {
     setSelectedServerIndex(0)
   }, [slug])
 
+  // Fetch movie
   useEffect(() => {
     const fetchMovie = async () => {
       setLoading(true)
@@ -56,6 +58,22 @@ const EpisodePlayer = () => {
     fetchMovie()
   }, [slug, ep, selectedServerIndex])
 
+  // Reset fading state khi đổi tập
+  useEffect(() => {
+    if (currentEpisode) setIsFading(false)
+  }, [currentEpisode])
+
+  // Hàm đổi tập
+  const handleChangeEpisode = (serverIndex, episodeSlug) => {
+    setIsFading(true)
+    setTimeout(() => {
+      setSelectedServerIndex(serverIndex)
+      navigate(`/phim/${slug}/${episodeSlug}`)
+      setIsFading(false)
+    }, 300)
+  }
+
+  // Render
   if (loading)
     return (
       <div className="text-white bg-black p-12 text-center">Đang tải...</div>
@@ -76,17 +94,6 @@ const EpisodePlayer = () => {
       </div>
     )
   }
-  const handleChangeEpisode = (serverIndex, episodeSlug) => {
-    setIsFading(true)
-    setTimeout(() => {
-      setSelectedServerIndex(serverIndex)
-      navigate(`/phim/${slug}/${episodeSlug}`)
-      setIsFading(false)
-    }, 300) // Thời gian fade out
-  }
-  useEffect(() => {
-    if (currentEpisode) setIsFading(false)
-  }, [currentEpisode])
   return (
     <div className="bg-black text-white min-h-screen">
       {isFading && (
