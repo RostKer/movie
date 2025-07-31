@@ -1,0 +1,59 @@
+/* Tùy chỉnh popup */
+.swal-custom {
+  border-radius: 20px !important;
+  padding: 30px !important;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pháo hoa animation */
+.swal-fireworks::before,
+.swal-fireworks::after {
+  content: '✨✨✨';
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  animation: fireworks 1.5s infinite;
+  color: #ffd700;
+  left: 0;
+}
+.swal-fireworks::after {
+  animation-delay: 0.7s;
+}
+
+@keyframes fireworks {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.8);
+  }
+}
+
+/* Nút đẹp kiểu Netflix */
+.swal-btn {
+  background: #e50914 !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-size: 1.1rem !important;
+  padding: 10px 20px !important;
+  transition: 0.3s;
+}
+.swal-btn:hover {
+  background: #f6121d !important;
+}
+
+/* Text */
+.swal-text {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
