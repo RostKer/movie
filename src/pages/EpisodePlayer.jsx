@@ -12,7 +12,7 @@ const EpisodePlayer = () => {
   const [selectedServerIndex, setSelectedServerIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const [isFading, setIsFading] = useState(false)
-
+  4n
   // Reset server về 0 khi đổi phim
   useEffect(() => {
     setSelectedServerIndex(0)
@@ -126,63 +126,50 @@ const EpisodePlayer = () => {
         {movie.name}
       </p>
       {/* Server + tập */}
-      <div className="bg-[#111] border-t-2 border-[#222] mt-5 p-6 space-y-8">
+      <div className="bg-dark border-top mt-5 p-4">
         {servers.map((server, serverIndex) => (
           <div
             key={serverIndex}
-            className={`p-4 rounded-lg shadow-md ${
+            className={`p-3 rounded shadow ${
               selectedServerIndex === serverIndex
-                ? 'border border-yellow-500 bg-[#1a1a1a]'
-                : 'bg-[#1a1a1a]'
+                ? 'border border-warning bg-dark'
+                : 'bg-dark'
             }`}
           >
             {/* Tên server */}
             <h3
-              className="text-xl font-bold text-yellow-400 mb-4 border-b border-yellow-600 pb-2"
-              style={{
-                marginTop: '15px',
-                fontSize: '20px',
-                fontWeight: 'bold',
-                color: '#FFD700',
-              }}
+              className="h5 fw-bold text-warning mb-3 border-bottom border-warning pb-2"
+              style={{ marginTop: '15px' }}
             >
               {server.server_name || `Server ${serverIndex + 1}`}
             </h3>
 
             {/* Danh sách tập */}
-            <div
-              className="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-12"
-              style={{
-                gap: '10px',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(10, 1fr)',
-                width: '50px',
-              }}
-            >
+            <div className="row g-2">
               {server.server_data.map((episodeItem) => {
                 const isActive =
                   selectedServerIndex === serverIndex && episodeItem.slug === ep
                 return (
-                  <button
+                  <div
                     key={episodeItem.slug}
-                    onClick={() =>
-                      handleChangeEpisode(serverIndex, episodeItem.slug)
-                    }
-                    style={{
-                      background: isActive ? '#FFD700' : '#222',
-                      color: isActive ? '#000' : '#fff',
-                      border: isActive ? '1px solid #FFD700' : '1px solid #444',
-                      padding: '6px 8px',
-                      fontSize: '0.85rem',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      textAlign: 'center',
-                      minWidth: '60px',
-                      gap: '10px',
-                    }}
+                    className="col-4 col-sm-3 col-md-2"
                   >
-                    {episodeItem.name}
-                  </button>
+                    <button
+                      onClick={() =>
+                        handleChangeEpisode(serverIndex, episodeItem.slug)
+                      }
+                      className={`btn w-100 ${
+                        isActive ? 'btn-warning text-dark' : 'btn-dark border'
+                      }`}
+                      style={{
+                        fontSize: '0.85rem',
+                        borderRadius: '4px',
+                        padding: '6px 8px',
+                      }}
+                    >
+                      {episodeItem.name}
+                    </button>
+                  </div>
                 )
               })}
             </div>
