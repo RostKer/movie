@@ -135,17 +135,24 @@ const EpisodePlayer = () => {
         {movie.name}
       </p>
       {/* Server + tập */}
-      <div className="bg-dark border-top mt-3 py-2 px-0">
+      <div className="bg-dark border-top mt-3 p-3">
         {servers.map((server, serverIndex) => (
-          <div key={serverIndex} className="py-3 px-2 rounded shadow bg-dark">
-            <h3 className="h5 fw-bold text-warning mb-3 border-bottom border-warning pb-2">
+          <div key={serverIndex} className="mb-4">
+            {/* Tên server */}
+            <h3
+              className="h5 fw-bold text-warning mb-3 border-bottom border-warning pb-2"
+              style={{ marginTop: '10px' }}
+            >
               {server.server_name || `Server ${serverIndex + 1}`}
             </h3>
 
+            {/* Danh sách tập */}
             <div
-              className="d-grid gap-1"
+              className="d-grid"
               style={{
-                gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))',
+                gap: '10px',
               }}
             >
               {server.server_data.map((episodeItem) => {
@@ -164,6 +171,7 @@ const EpisodePlayer = () => {
                       fontSize: '0.85rem',
                       borderRadius: '4px',
                       padding: '6px 8px',
+                      textAlign: 'center',
                     }}
                   >
                     {episodeItem.name}
