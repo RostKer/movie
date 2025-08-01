@@ -14,6 +14,10 @@ export default function Menu({
 }) {
   const navigate = useNavigate()
 
+  const handleItemClick = (slug) => {
+    navigate(`${navigateBase}${slug}`)
+    closeNavbar() // gọi luôn
+  }
   // Tự động tính số cột (desktop nhiều hơn mobile)
   const columns = isMobile
     ? 2
@@ -110,9 +114,8 @@ export default function Menu({
                   <li key={item.slug}>
                     <div
                       onClick={() => {
-                        navigate(`${navigateBase}${item.slug}`)
+                        handleItemClick(item.slug)
                         setShowDropdown(false)
-                        if (isMobile) closeNavbar()
                         window.scrollTo({ top: 0, behavior: 'smooth' })
                       }}
                       style={{

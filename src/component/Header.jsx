@@ -28,10 +28,11 @@ const Header = () => {
   // Helper đóng navbar khi chọn item
   const closeNavbar = () => {
     const navbar = document.getElementById('navbarNav')
-    if (navbar) {
-      const bsCollapse = new window.bootstrap.Collapse(navbar, {
-        toggle: false,
-      })
+    if (navbar && window.bootstrap) {
+      let bsCollapse = window.bootstrap.Collapse.getInstance(navbar)
+      if (!bsCollapse) {
+        bsCollapse = new window.bootstrap.Collapse(navbar, { toggle: false })
+      }
       bsCollapse.hide()
     }
   }
@@ -119,10 +120,6 @@ const Header = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  //  Helper chia dữ liệu cột
-  // const getColumn = (arr, size, colIndex) =>
-  //   arr.slice(colIndex * size, colIndex * size + size)
-
   return (
     <div
       className="navbar navbar-expand-xl navbar-dark shadow-sm sticky-top bg-dark"
@@ -157,7 +154,7 @@ const Header = () => {
               <div
                 onClick={() => {
                   navigate('/')
-                  if (isMobile) closeNavbar()
+                  closeNavbar()
                 }}
                 style={{
                   fontSize: '1.1rem',
