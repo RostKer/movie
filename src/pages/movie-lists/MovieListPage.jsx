@@ -90,10 +90,10 @@ export default function MovieListPage({
   return (
     <div className="bg-dark" style={{ minHeight: '100vh', color: '#fff' }}>
       <h2
-        className=" ml-2 mb-4 ms-4 pt-3 text-center text-md-start pt-1"
+        className=" ml-2 mb-4 ms-4 pt-3 text-start text-md-start pt-1"
         style={{ fontWeight: 'bold', color: '#FFD700', fontSize: '18px' }}
       >
-        {showApiTitle ? `${titlePrefix}: ${title}` : titlePrefix}
+        {showApiTitle ? `${titlePrefix} ${title}` : titlePrefix}
       </h2>
 
       {/* Grid phim */}

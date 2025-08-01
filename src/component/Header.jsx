@@ -29,14 +29,17 @@ const Header = () => {
   const closeNavbar = () => {
     const navbar = document.getElementById('navbarNav')
     if (navbar && window.bootstrap) {
-      let bsCollapse = window.bootstrap.Collapse.getInstance(navbar)
-      if (!bsCollapse) {
-        bsCollapse = new window.bootstrap.Collapse(navbar, { toggle: false })
-      }
-      bsCollapse.hide()
+      const bsCollapse = window.bootstrap.Collapse.getOrCreateInstance(navbar)
+      bsCollapse.toggle()
     }
   }
-
+  const toggleNavbar = () => {
+    const navbar = document.getElementById('navbarNav')
+    if (navbar && window.bootstrap) {
+      const bsCollapse = window.bootstrap.Collapse.getOrCreateInstance(navbar)
+      bsCollapse.toggle()
+    }
+  }
   // Lấy danh sách category
   const fetchCategories = async () => {
     try {
@@ -136,12 +139,7 @@ const Header = () => {
         </a>
 
         {/* Toggle mobile */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
+        <button className="navbar-toggler" type="button" onClick={toggleNavbar}>
           <span className="navbar-toggler-icon"></span>
         </button>
 

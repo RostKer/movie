@@ -7,7 +7,7 @@ export default function MovieYear() {
     <MovieListPage
       fetchFunction={getMoviesByYear}
       paramName="slug"
-      titlePrefix="NĂM"
+      titlePrefix=""
     />
   )
 }
