@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import Header from './component/Header'
 import Footer from './component/Footer'
-
+import './App.css'
 // Lazy load các page
 const Home = lazy(() => import('./pages/Home'))
 const Category = lazy(() => import('./pages/movie-lists/Category'))

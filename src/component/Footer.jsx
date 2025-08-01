@@ -1,8 +1,6 @@
 const Footer = () => {
   return (
-    <footer
-      style={{ background: '#0f0f0f', color: '#fff', padding: '40px 20px' }}
-    >
+    <footer className="bg-dark" style={{ padding: '40px 20px' }}>
       <div className="container">
         <div
           className="d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start"

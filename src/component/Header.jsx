@@ -125,8 +125,8 @@ const Header = () => {
 
   return (
     <div
-      className="navbar navbar-expand-xl navbar-dark shadow-sm sticky-top"
-      style={{ background: '#0f0f0f', padding: '10px 20px' }}
+      className="navbar navbar-expand-xl navbar-dark shadow-sm sticky-top bg-dark"
+      style={{ padding: '10px 20px' }}
     >
       <div className="container-fluid">
         {/* Logo */}
@@ -149,7 +149,10 @@ const Header = () => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul
+            className="navbar-nav me-auto mb-2 mb-lg-0"
+            style={{ whiteSpace: 'nowrap' }}
+          >
             <li className="nav-item">
               <div
                 onClick={() => {
@@ -192,7 +195,7 @@ const Header = () => {
               closeNavbar={closeNavbar}
             />
             <Menu
-              title="Năm"
+              title="Năm SX"
               items={year}
               showDropdown={showYearDropdown}
               setShowDropdown={setShowYearDropdown}
@@ -237,70 +240,35 @@ const Header = () => {
             ))}
           </ul>
 
-          {/* Search + Login */}
+          {/* Search */}
           <div className="d-flex mt-3 mt-lg-0 align-items-center">
             <form
-              className="d-flex"
+              className="d-flex bg-light rounded-pill overflow-hidden"
               onSubmit={handleSearch}
-              style={{
-                maxWidth: '300px',
-                width: '100%',
-                background: '#f3f3f3ff',
-                borderRadius: '15px',
-                overflow: 'hidden',
-              }}
+              style={{ width: '100%', maxWidth: '300px' }}
             >
               <input
-                className="form-control border-0"
+                className="form-control border-0 bg-transparent text-dark"
                 type="search"
                 placeholder="Tìm phim..."
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                style={{
-                  fontSize: '0.95rem',
-                  background: 'transparent',
-                  color: 'black',
-                }}
+                style={{ fontSize: '0.95rem' }}
               />
               <button
-                className="btn"
+                className="btn fw-bold"
                 type="submit"
                 style={{
                   background: '#FFD700',
                   color: '#000',
-                  fontWeight: 'bold',
-                  border: 'none',
                   padding: '10px 16px',
                   fontSize: '14px',
+                  whiteSpace: 'nowrap',
                 }}
               >
-                Tìm
+                Tìm phim
               </button>
             </form>
-            <button
-              className="btn ms-3"
-              type="button"
-              style={{
-                background: '#FFD700',
-                color: '#000',
-                whiteSpace: 'nowrap',
-                minWidth: '100px',
-                fontWeight: 'bold',
-                fontSize: '0.8rem',
-                border: 'none',
-                padding: '12px 10px',
-                borderRadius: '20px',
-                transition: 'background 0.3s ease',
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = '#ffea75')
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = '#FFD700')
-              }
-            >
-              Đăng nhập
-            </button>
           </div>
         </div>
       </div>

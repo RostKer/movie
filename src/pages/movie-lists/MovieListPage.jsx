@@ -88,9 +88,9 @@ export default function MovieListPage({
   }, [movies])
 
   return (
-    <div style={{ background: '#0f0f0f', minHeight: '100vh', color: '#fff' }}>
+    <div className="bg-dark" style={{ minHeight: '100vh', color: '#fff' }}>
       <h2
-        className=" ml-2 mb-4 ms-4 text-center text-md-start"
+        className=" ml-2 mb-4 ms-4 pt-3 text-center text-md-start pt-1"
         style={{ fontWeight: 'bold', color: '#FFD700', fontSize: '18px' }}
       >
         {showApiTitle ? `${titlePrefix}: ${title}` : titlePrefix}
