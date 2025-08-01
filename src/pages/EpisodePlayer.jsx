@@ -135,46 +135,39 @@ const EpisodePlayer = () => {
         {movie.name}
       </p>
       {/* Server + tập */}
-      <div className="bg-dark border-top mt-5 p-4">
+      <div className="bg-dark border-top mt-3 py-2 px-0">
         {servers.map((server, serverIndex) => (
-          <div
-            key={serverIndex}
-            className={`p-4 rounded-lg shadow-md bg-[#1a1a1a]`}
-          >
-            {/* Tên server */}
-            <h3
-              className="h5 fw-bold text-warning mb-3 border-bottom border-warning pb-2"
-              style={{ marginTop: '15px' }}
-            >
+          <div key={serverIndex} className="py-3 px-2 rounded shadow bg-dark">
+            <h3 className="h5 fw-bold text-warning mb-3 border-bottom border-warning pb-2">
               {server.server_name || `Server ${serverIndex + 1}`}
             </h3>
 
-            {/* Danh sách tập */}
-            <div className="row g-2">
+            <div
+              className="d-grid gap-1"
+              style={{
+                gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))',
+              }}
+            >
               {server.server_data.map((episodeItem) => {
                 const isActive =
                   selectedServerIndex === serverIndex && episodeItem.slug === ep
                 return (
-                  <div
+                  <button
                     key={episodeItem.slug}
-                    className="col-3 col-sm-3 col-md-2"
+                    onClick={() =>
+                      handleChangeEpisode(serverIndex, episodeItem.slug)
+                    }
+                    className={`btn ${
+                      isActive ? 'btn-warning text-dark' : 'btn-dark border'
+                    }`}
+                    style={{
+                      fontSize: '0.85rem',
+                      borderRadius: '4px',
+                      padding: '6px 8px',
+                    }}
                   >
-                    <button
-                      onClick={() =>
-                        handleChangeEpisode(serverIndex, episodeItem.slug)
-                      }
-                      className={`btn w-100 ${
-                        isActive ? 'btn-warning text-dark' : 'btn-dark border'
-                      }`}
-                      style={{
-                        fontSize: '0.85rem',
-                        borderRadius: '4px',
-                        padding: '6px 8px',
-                      }}
-                    >
-                      {episodeItem.name}
-                    </button>
-                  </div>
+                    {episodeItem.name}
+                  </button>
                 )
               })}
             </div>
