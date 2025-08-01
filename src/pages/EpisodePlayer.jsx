@@ -102,19 +102,28 @@ const EpisodePlayer = () => {
           Đang chuyển tập...
         </div>
       )}
-      <iframe
-        src={currentEpisode}
+      <div
+        className="position-relative bg-black"
         style={{
           width: '100%',
-          height: 'calc(100vh - 60px)',
-          border: 'none',
-          opacity: isFading ? 0 : 1,
-          transition: 'opacity 0.3s ease-in-out',
+          aspectRatio: '16/9', // giữ tỷ lệ 16:9
         }}
-        allowFullScreen
-        allow="autoplay; encrypted-media"
-        title="Video Player"
-      />
+      >
+        <iframe
+          src={currentEpisode}
+          className="position-absolute top-0 start-0"
+          style={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            opacity: isFading ? 0 : 1,
+            transition: 'opacity 0.3s ease-in-out',
+          }}
+          allowFullScreen
+          allow="autoplay; encrypted-media"
+          title="Video Player"
+        />
+      </div>
       <p
         style={{
           marginTop: '15px',
@@ -130,11 +139,7 @@ const EpisodePlayer = () => {
         {servers.map((server, serverIndex) => (
           <div
             key={serverIndex}
-            className={`p-3 rounded shadow ${
-              selectedServerIndex === serverIndex
-                ? 'border border-warning bg-dark'
-                : 'bg-dark'
-            }`}
+            className={`p-4 rounded-lg shadow-md bg-[#1a1a1a]`}
           >
             {/* Tên server */}
             <h3
@@ -152,7 +157,7 @@ const EpisodePlayer = () => {
                 return (
                   <div
                     key={episodeItem.slug}
-                    className="col-4 col-sm-3 col-md-2"
+                    className="col-3 col-sm-3 col-md-2"
                   >
                     <button
                       onClick={() =>
