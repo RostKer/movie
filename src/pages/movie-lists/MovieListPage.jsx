@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import getPoster from '../../utils/imageHelper'
 import LazyImage from '../../component/LazyImage'
-
-export default function MovieListPage({
+const MovieListPage = ({
   fetchFunction,
   paramName,
   titlePrefix,
   useSearchParamsOnly = false,
   showApiTitle = true,
-}) {
+  showSlider = false,
+}) => {
   const params = useParams()
   const [searchParams, setSearchParams] = useSearchParams()
   const slug = useSearchParamsOnly ? null : params[paramName]
@@ -90,7 +90,7 @@ export default function MovieListPage({
   return (
     <div className="bg-dark" style={{ minHeight: '100vh', color: '#fff' }}>
       <h2
-        className=" ml-2 mb-4 ms-4 pt-3 text-start text-md-start pt-1"
+        className="ml-2 mb-4 ms-4 pt-3 text-start text-md-start pt-1"
         style={{ fontWeight: 'bold', color: '#FFD700', fontSize: '18px' }}
       >
         {showApiTitle ? `${titlePrefix} ${title}` : titlePrefix}
@@ -281,3 +281,5 @@ export default function MovieListPage({
     </div>
   )
 }
+
+export default MovieListPage

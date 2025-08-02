@@ -115,3 +115,14 @@ export async function getMoviesByYear(slug, page = 1) {
     return null
   }
 }
+export async function getMoviesBySeriesItems(type_list, page = 1) {
+  try {
+    const res = await axios.get(`${API_URL}/v1/api/danh-sach/${type_list}`, {
+      params: { page },
+    })
+    return res.data?.data || { items: [] }  // Trả nguyên object
+  } catch (error) {
+    console.error('Lỗi khi lấy phim:', error)
+    return { items: [] }
+  }
+}

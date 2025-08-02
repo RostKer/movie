@@ -2,7 +2,7 @@
 import MovieListPage from './MovieListPage'
 import { searchMovies } from '../../service/movieService'
 
-export default function Search() {
+const Search = () => {
   return (
     <MovieListPage
       fetchFunction={async (_, page, searchParams) => {
@@ -26,3 +26,4 @@ export default function Search() {
     />
   )
 }
+export default Search

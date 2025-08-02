@@ -2,7 +2,7 @@
 import MovieListPage from './MovieListPage'
 import { getMoviesByCountry } from '../../service/movieService'
 
-export default function MoviesCountry() {
+const MoviesCountry = () => {
   return (
     <MovieListPage
       fetchFunction={getMoviesByCountry}
@@ -11,3 +11,4 @@ export default function MoviesCountry() {
     />
   )
 }
+export default MoviesCountry

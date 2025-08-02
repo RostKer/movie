@@ -2,7 +2,7 @@
 import MovieListPage from './MovieListPage'
 import { getMoviesBySeries } from '../../service/movieService'
 
-export default function MoviesSeries() {
+const MoviesSeries = () => {
   return (
     <MovieListPage
       fetchFunction={getMoviesBySeries}
@@ -11,3 +11,4 @@ export default function MoviesSeries() {
     />
   )
 }
+export default MoviesSeries

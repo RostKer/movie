@@ -1,8 +1,7 @@
 // src/pages/movie-lists/Category.jsx
 import MovieListPage from './MovieListPage'
 import { getMoviesByCategory } from '../../service/movieService'
-
-export default function Category() {
+const MovieCategory = () => {
   return (
     <MovieListPage
       fetchFunction={getMoviesByCategory}
@@ -11,3 +10,4 @@ export default function Category() {
     />
   )
 }
+export default MovieCategory
