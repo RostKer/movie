@@ -156,7 +156,7 @@ const Home = () => {
             margin: 0,
           }}
         >
-          PHIM HOẠT HÌNH MỚI CẬP NHẬT
+          HOẠT HÌNH MỚI CẬP NHẬT
         </h2>
         <Link
           to="/danh-sach/hoat-hinh"
