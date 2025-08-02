@@ -131,11 +131,19 @@ const Header = () => {
       <div className="container-fluid">
         {/* Logo */}
         <a
-          className="navbar-brand fw-bold"
+          className="navbar-brand d-flex align-items-center"
           href="/"
-          style={{ color: '#FFD700', fontSize: '1.8rem', letterSpacing: '1px' }}
+          style={{
+            fontSize: window.innerWidth <= 768 ? '1.3rem' : '1.8rem',
+            letterSpacing: '1px',
+            fontWeight: 'bold',
+            color: '#FFD700',
+            gap: '8px',
+            textDecoration: 'none',
+          }}
         >
-          🎬 MyMovie
+          <i className="bi bi-film" style={{ fontSize: '1.8rem' }}></i>
+          <span>MyMovie</span>
         </a>
 
         {/* Toggle mobile */}
